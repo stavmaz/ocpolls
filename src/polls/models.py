@@ -1,7 +1,6 @@
 from annoying.fields import JSONField
 from django.db import models
 from polls.graphs import DynamicSchulze
-from pyvotecore.schulze_pr import SchulzePR
 import json
 
 
@@ -15,12 +14,8 @@ class Poll(models.Model):
         schulze = DynamicSchulze(valid_props)
         for v in self.votes.all():
             schulze.add_vote(v.data)
-        schulze_res = schulze.run_schulze()
-        # print schulze_res
-        result = schulze_res['order']
-        return [self.proposals[i] for i in result]
-
-        # return [[self.proposals[i] for i in x] for x in result]
+        result = schulze.run_schulze()
+        return [set([self.proposals[i] for i in x]) for x in result]
 
     @models.permalink
     def get_absolute_url(self):

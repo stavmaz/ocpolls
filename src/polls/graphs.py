@@ -60,4 +60,16 @@ class DynamicSchulze(object):
 
     def run_schulze(self):
         # return SchulzeMethod(self.get_schulze_format(), ballot_notation = "grouping").as_dict()
-        return SchulzePR(self.get_schulze_format(), ballot_notation="grouping").as_dict()
+        pr_res = SchulzePR(self.get_schulze_format(), ballot_notation="grouping").as_dict()
+        # convert resulting order to ordered sets of tied winners
+        seen = set()
+        order = list()
+        for winner in pr_res['rounds']:
+            if winner['winner'] in seen:
+                continue
+            tied = set((winner['winner'],))
+            if 'tied_winners' in winner:
+                tied = tied.union(winner['tied_winners'])
+            seen = seen.union(tied)
+            order.append(tied)
+        return order
