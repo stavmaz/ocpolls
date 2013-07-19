@@ -1,5 +1,12 @@
 from django import forms
+from polls.models import Poll
+from django.forms.widgets import Textarea
 
 
-class CreatePollForm(forms.Form):
-    text = forms.TextInput('Proposals', widget=forms.Textarea)
+class CreatePollForm(forms.ModelForm):
+    text = forms.CharField(widget=Textarea)
+
+    class Meta:
+        model = Poll
+        fields = ()
+

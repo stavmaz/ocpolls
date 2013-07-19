@@ -1,26 +1,27 @@
 # Create your views here.
 from django.http.response import HttpResponse
 from django.views.generic.base import View
-from django.views.generic.edit import FormView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import FormView, CreateView
 from polls.forms import CreatePollForm
 from polls.models import Poll, Vote
 import json
 
 
-class HomeView(FormView):
+class HomeView(CreateView):
+    model = Poll
     form_class = CreatePollForm
 
     def form_valid(self, form):
-        o = Poll()
-        o.proposals = form.cleaned_data['text'].splitlines()
-        o.save()
+        form.instance.proposals = form.cleaned_data['text'].splitlines()
+        return super(HomeView, self).form_valid(form)
 
 
-class VoteView(View):
-    form_class = CreatePollForm
+class PollView(DetailView):
+    model = Poll
 
     def post(self, request, *args, **kwargs):
-        o = Vote()
+        o = Vote(poll=self.get_object())
         o.data = json.loads(request.POST['vote'])
         o.save()
         return HttpResponse("OK")
