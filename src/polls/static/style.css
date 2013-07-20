@@ -9,8 +9,7 @@ body{
 
 
 ul.dropList{
-	background:white;
-	border:solid 1px #ececec;
+	
 	padding:4px;
 	margin:4px 0px;
 }
@@ -28,16 +27,13 @@ ul.dropList li{
 
 
 ul.dropList.dropAble{
-	background:lightyellow;
-	border:dashed 1px yellow;
-	padding:10px;
+	background: #c2c2c2;
+	border:dashed 0px #ececec;
 	visibility: hidden;
 }
 
 ul.dropList.dropAbleOver{
 	visibility: visible;
-	padding: 10px;
-	margin:10px 0px;
 }
 
 
