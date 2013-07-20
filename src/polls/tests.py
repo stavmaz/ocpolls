@@ -16,7 +16,5 @@ class PollTest(TestCase):
         Vote.objects.create(poll=p, data=[[0, 1, 2]])
 
         self.assertEquals(5, p.votes.count())
+        self.assertEquals(p.calculate_result(), ['Green', 'Red', 'Blue'])
 
-        print p.calculate_result()
-
-        assert False
