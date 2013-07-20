@@ -10,8 +10,8 @@ body{
 
 ul.dropList{
 	
-	padding:4px;
-	margin:4px 0px;
+	padding:0px;
+	margin:0px 0px;
 }
 
 ul.dropList li{
@@ -30,6 +30,8 @@ ul.dropList.dropAble{
 	background: #c2c2c2;
 	border:dashed 0px #ececec;
 	visibility: hidden;
+	padding:8px;
+	margin:2px 0px;
 }
 
 ul.dropList.dropAbleOver{
