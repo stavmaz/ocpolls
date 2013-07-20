@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <script>
+    var data = {{object.json_proposals|safe}};
+    console.log(data);
+    </script>
+    
+    <form method="post">
+        <textarea name="vote"></textarea>
+        {% csrf_token %}
+        <input type="submit">
+    </form>
+{% endblock %}

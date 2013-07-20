@@ -16,6 +16,12 @@ class Poll(models.Model):
 
         return [[self.proposals[i] for i in x] for x in result]
 
+    @models.permalink
+    def get_absolute_url(self):
+        return 'poll', (str(self.id),)
+
+    def json_proposals(self):
+        return json.dumps(self.proposals)
 
 class Vote(models.Model):
     poll = models.ForeignKey(Poll, related_name='votes')
