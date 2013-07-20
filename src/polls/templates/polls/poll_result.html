@@ -1,18 +1,54 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Result</h1>
-    <ul>
-    {% for r in object.calculate_result %}
-      <li>[{{forloop.counter0}}] {{r}}</li>
-    {% endfor %}</ul>
+    
+    
+
+<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/static/style.css" />
+	
+	
+
+    
+    {% for g in object.calculate_result %}
+    
+    
+    <table style="width:90%;margin:0 auto;">
+    <tr>
+    <td style="width:100px;text-align: center;">
+    	<h1 style="font-size: 50px;">{{forloop.counter}}</h1>
+   	</td>
+    <td>
+    
+     	<ul class="dropList">
+      	{% for r in g %}
+        	<li>{{r}} </li>
+       	{% endfor %}
+    	</ul>
+    
+    </td>
+    </tr>
+    </table>
+    
+   
+    
+    {% endfor %}
+    
+    
+    
+    
+    
+    
+    <!-- 
     <h1>Votes</h1>
-    <ul>
+    <ul class="dropList">
     {% for v in object.votes.all %}
       <li>
           {% for g in v.as_stringlist %}
             [{{g|join:', '}}]
           {% endfor %}
       </li>
-    {% endfor %}</ul>
+    {% endfor %}
+    </ul>
+     -->
 {% endblock %}

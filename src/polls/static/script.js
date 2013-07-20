@@ -5,7 +5,41 @@
 		      axis: "y",
 		      handle: ".grab",
 		      dropOnEmpty: true,
+		      /*start:function(e,ui){
+		    	  var $this = $(this);
+		    	  console.log($this.find("li"))
+		    	  if($this.find("li").length == 1){
+		    		  $this.next().remove(); //using next! so be sure not to put DOM element between ul's
+		    		  $this.remove();
+		    	  }
+		      },*/
+		      over:function(e,ui){
+		    	  var $this = $(this);
+		    	  if ($this.hasClass("dropAble")){
+		    		  $this.addClass("dropAbleOver");
+		    	  }
+		    	  
+		    	  
+		      },
+		      out:function(e,ui){
+		    	  var $this = $(this);
+		    	  console.log($this,ui.sender,ui)
+		    	  if ($this.hasClass("dropAbleOver")){
+		    		  $this.removeClass("dropAbleOver");
+		    	  } else {
+		    		  console.log("should remove white strip",ui.sender.find("li").length);
+		    		  if(ui.sender.find("li").length == 1){
+		    			  
+		    			  $this.next().remove(); //using next! so be sure not to put DOM element between ul's
+		    			  $this.remove();
+			    	  }
+		    	  }
+		    	  
+		    	  
+		    	  
+		      },
 		      receive:function(e,ui){
+		    	  
 		    	  var $this = $(this);
 		    	  handleDrop();
 		    	  

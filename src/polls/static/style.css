@@ -30,7 +30,16 @@ ul.dropList li{
 ul.dropList.dropAble{
 	background:lightyellow;
 	border:dashed 1px yellow;
+	padding:10px;
+	visibility: hidden;
 }
+
+ul.dropList.dropAbleOver{
+	visibility: visible;
+	padding: 10px;
+	margin:10px 0px;
+}
+
 
 
 .grab{
